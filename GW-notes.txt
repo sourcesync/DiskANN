@@ -1,0 +1,14 @@
+
+
+libomp:
+- https://open-box.readthedocs.io/en/latest/installation/openmp_macos.html
+- - updated paths
+
+boost:
+- brew install boost
+
+iomp5:
+- conda install -c conda-forge llvm-openmp 
+- locate and change CMakeLists.txt
+- - /Users/cuongwilliams/anaconda3/envs/diskann-gw-fork/lib/libiomp5.dylib
+

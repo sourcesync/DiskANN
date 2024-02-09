@@ -131,7 +131,8 @@ inline void open_file_to_write(std::ofstream &writer, const std::string &filenam
 #ifdef _WINDOWS
         auto ret = std::to_string(strerror_s(buff, 1024, errno));
 #else
-        auto ret = std::string(strerror_r(errno, buff, 1024));
+        //GW auto ret = std::string(strerror_r(errno, buff, 1024));
+        auto ret = std::string();
 #endif
         auto message = std::string("Failed to open file") + filename + " for write because " + buff + ", ret=" + ret;
         diskann::cerr << message << std::endl;
@@ -705,7 +706,8 @@ inline void open_file_to_write(std::ofstream &writer, const std::string &filenam
 #ifdef _WINDOWS
         auto ret = std::to_string(strerror_s(buff, 1024, errno));
 #else
-        auto ret = std::string(strerror_r(errno, buff, 1024));
+        //GW auto ret = std::string(strerror_r(errno, buff, 1024));
+        auto ret = std::string();
 #endif
         std::string error_message =
             std::string("Failed to open file") + filename + " for write because " + buff + ", ret=" + ret;
@@ -989,17 +991,17 @@ inline void copy_aligned_data_from_file(const char *bin_file, T *&data, size_t &
 // NOTE :: good efficiency when total_vec_size is integral multiple of 64
 inline void prefetch_vector(const char *vec, size_t vecsize)
 {
-    size_t max_prefetch_size = (vecsize / 64) * 64;
-    for (size_t d = 0; d < max_prefetch_size; d += 64)
-        _mm_prefetch((const char *)vec + d, _MM_HINT_T0);
+//GW   size_t max_prefetch_size = (vecsize / 64) * 64;
+//GW    for (size_t d = 0; d < max_prefetch_size; d += 64)
+//GW        _mm_prefetch((const char *)vec + d, _MM_HINT_T0);
 }
 
 // NOTE :: good efficiency when total_vec_size is integral multiple of 64
 inline void prefetch_vector_l2(const char *vec, size_t vecsize)
 {
-    size_t max_prefetch_size = (vecsize / 64) * 64;
-    for (size_t d = 0; d < max_prefetch_size; d += 64)
-        _mm_prefetch((const char *)vec + d, _MM_HINT_T1);
+//GW    size_t max_prefetch_size = (vecsize / 64) * 64;
+//GW    for (size_t d = 0; d < max_prefetch_size; d += 64)
+//GW        _mm_prefetch((const char *)vec + d, _MM_HINT_T1);
 }
 
 // NOTE: Implementation in utils.cpp.

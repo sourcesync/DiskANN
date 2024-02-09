@@ -10,7 +10,7 @@
 
 #ifndef _WINDOWS
 #include <fcntl.h>
-#include <libaio.h>
+//GW #include <libaio.h>
 #include <unistd.h>
 typedef io_context_t IOContext;
 #else
